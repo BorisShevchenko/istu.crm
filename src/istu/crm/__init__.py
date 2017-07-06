@@ -7,7 +7,7 @@ from wsgiref.simple_server import make_server
 
 
 def hello_world(request):
-    return Response('<body><h1>Hello World!</h1></body>')
+    return Response('<body><h1>Hello, World!</h1></body>')
 
 
 def hi_body(request):
@@ -29,6 +29,7 @@ def ask(request):
         return Response("""
         <h1>Hi, {q}!</h1>
         <p>Привет, {q}!<p>
+        <p>Еще тект для понтов</p>
         """.format(q=q))
 
 
