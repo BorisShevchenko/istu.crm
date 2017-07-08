@@ -3,10 +3,10 @@ from __future__ import print_function
 
 from pyramid.config import Configurator
 from pyramid.response import Response
-
+from wsgiref.simple_server import make_server
 
 def hello_world(request):
-    return Response('<body><h1>Hello World!</h1></body>')
+    return Response('<body><h1>Hello, World!</h1></body>')
 
 
 def hi_body(request):
@@ -28,6 +28,7 @@ def ask(request):
         return Response("""
         <h1>Hi, {q}!</h1>
         <p>Привет, {q}!<p>
+        <p>Еще тект для понтов</p>
         """.format(q=q))
 
 
@@ -44,3 +45,15 @@ def main(global_config, **settings):
     config.add_view(ask, route_name='ask')
 
     return config.make_wsgi_app()
+
+NET = '0.0.0.0'
+PORT = 6543
+
+def run():
+    app = main(None)
+    print("http://127.0.0.1:{}".format(PORT))
+    server = make_server(NET, PORT, app)
+    server.serve_forever()
+
+if __name__=="__main__":
+    run()
